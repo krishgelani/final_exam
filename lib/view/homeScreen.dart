@@ -159,7 +159,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Text(
                                       "₹ ${homeController.ProductDetails[index]['product_price']}"),
                                   homeController.status.isFalse?ElevatedButton(onPressed: (){}, child: Text("out of stock"),style: ElevatedButton.styleFrom(backgroundColor: Colors.red),):ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+
+                                      },
                                       child: Text("Add to cart"))
                                 ],
                               ),

@@ -47,11 +47,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.add)),
             IconButton(
                 onPressed: () {
-                  db.updateData("1",1);
-                  db.updateData("2",1);
-                  db.updateData("3",1);
-                  db.updateData("4",1);
-                  db.updateData("5",1);
+                  // db.updateData("1",1);
+                  // db.updateData("2",1);
+                  // db.updateData("3",1);
+                  // db.updateData("4",1);
+                  // db.updateData("5",1);
+                  homeController.status.value = true;
+
+
+
                 },
                 icon: Icon(Icons.restart_alt))
           ],
@@ -91,11 +95,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       debugPrint('Countdown Started');
                     },
                     onComplete: () {
-                      db.updateData("1",0);
-                      db.updateData("2",0);
-                      db.updateData("3",0);
-                      db.updateData("4",0);
-                      db.updateData("5",0);
+                      // db.updateData("1",0);
+                      // db.updateData("2",0);
+                      // db.updateData("3",0);
+                      // db.updateData("4",0);
+                      // db.updateData("5",0);
+                      homeController.status.value = false;
                     },
                     onChange: (String timeStamp) {
                       debugPrint('Countdown Changed $timeStamp');
@@ -147,15 +152,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 )
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                    "₹ ${homeController.ProductDetails[index]['product_price']}"),
-                                homeController.ProductDetails[index]['product_price'] == 0?ElevatedButton(onPressed: (){}, child: Text("out of stock"),style: ElevatedButton.styleFrom(backgroundColor: Colors.red),):ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text("Add to cart"))
-                              ],
+                            Obx(
+                              ()=> Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                      "₹ ${homeController.ProductDetails[index]['product_price']}"),
+                                  homeController.status.isFalse?ElevatedButton(onPressed: (){}, child: Text("out of stock"),style: ElevatedButton.styleFrom(backgroundColor: Colors.red),):ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text("Add to cart"))
+                                ],
+                              ),
                             )
                           ],
                         ),
